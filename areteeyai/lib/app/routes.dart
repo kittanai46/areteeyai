@@ -9,7 +9,9 @@ import '../features/cart/views/cart_screen.dart';
 import '../features/orders/views/orders_screen.dart';
 import '../features/profile/views/profile_screen.dart';
 import '../features/coupons/views/coupon_screen.dart';
+import '../features/restaurant/views/restaurant_detail_screen.dart';
 import '../core/constants/app_colors.dart';
+import '../core/services/restaurant_data.dart';
 
 /// Routes that show the bottom navigation bar
 const _bottomNavRoutes = ['/', '/coupons', '/orders', '/profile'];
@@ -29,6 +31,15 @@ final GoRouter appRouter = GoRouter(
         GoRoute(path: '/food',      builder: (_, __) => const FoodScreen()),
         GoRoute(path: '/delivery',  builder: (_, __) => const DeliveryScreen()),
         GoRoute(path: '/fresh-food',builder: (_, __) => const FreshFoodScreen()),
+        GoRoute(
+          path: '/restaurant/:id',
+          builder: (_, state) {
+            final id = state.pathParameters['id']!;
+            final restaurant = RestaurantData.findById(id);
+            if (restaurant == null) return const SizedBox.shrink();
+            return RestaurantDetailScreen(restaurant: restaurant);
+          },
+        ),
       ],
     ),
   ],
