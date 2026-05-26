@@ -53,7 +53,6 @@ AreteeYai เป็นแอปพลิเคชันที่พัฒนา�
 - Flutter
 - Dart
 - Google Maps / Location Services
-- REST API
 - Material Design
 
 --------
